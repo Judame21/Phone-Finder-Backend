@@ -38,10 +38,6 @@ const login = [
   body('username').isString().notEmpty(),
   body('password').isString().notEmpty(),
   async (req, res) => {
-
-    console.log('JWT Secret:', process.env.JWT_SECRET);
-
-    // Validar resultados de entrada
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
