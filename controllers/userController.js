@@ -51,7 +51,11 @@ const login = [
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
-      const token = jwt.sign({ id: user.id, admin: user.admin }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({
+        id: user.id,
+        nombre: user.nombre // Asegúrate de que 'nombre' es la propiedad correcta en tu base de datos
+      }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      console.log('Generated Token:', token);
       res.json({ token });
     } catch (error) {
       console.error(error);
