@@ -53,7 +53,8 @@ const login = [
 
       const token = jwt.sign({
         id: user.id,
-        nombre: user.nombre // Asegúrate de que 'nombre' es la propiedad correcta en tu base de datos
+        nombre: user.nombre,
+        admin : user.admin
       }, process.env.JWT_SECRET, { expiresIn: '1h' });
       console.log('Generated Token:', token);
       res.json({ token });
